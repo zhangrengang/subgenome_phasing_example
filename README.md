@@ -1,3 +1,9 @@
+## Table of Contents
+
+   * [Installation](#Installation)
+   * [Subgenome phasing with WGDI](#Subgenome-phasing-with-WGDI)
+   * [Subgenome phasing with SubPhaser](#Subgenome-phasing-with-SubPhaser)
+
 ### Installation ###
 Firstly, we need to install the required software ([WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser)) for this example.
 Here, we just install the software and dependencies via [conda](https://www.anaconda.com/).
@@ -13,13 +19,15 @@ conda install -c bioconda wgdi diamond phytop newick_utils
 
 ### Subgenome phasing with WGDI ###
 ##### Prepare input data #####
+
     - Genomic data (protein sequences in fasta format and gene coordinates in custom gff format) of the allopolyploid complex are required.
     - Genomic data of potential diploid progenitors as far as possible are recommended.
     - Genomic data of outgroup or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required.
 	- Configure files for WGDI.
 Here, we just use the example data [Triticum aestivum (AABBDD) and T. turgidum (AABB), and the outgroup Hordeum vulgare] prepared in this repo:
 ```
-git clone https://github.com/zhangrengang/
+git clone https://github.com/zhangrengang/subgenome_phasing_example
+cd subgenome_phasing_example
 cd wgdi
 gunzip *gz
 cat *fasta > pep.faa
@@ -268,20 +276,23 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
     - Homoeologous relationships of chromosome are required. These can be obtained from above synteny analyses or whole genome alignments..
 Here, we just use the example data [Triticum aestivum (AABBDD) and T. turgidum (AABB)] prepared in this repo:
 ```
-git clone https://github.com/zhangrengang/
+git clone https://github.com/zhangrengang/subgenome_phasing_example
+cd subgenome_phasing_example
 cd subphaser
+
+# download genome seqences of Triticum_aestivum
 wget https://urgi.versailles.inra.fr/download/iwgsc/IWGSC_RefSeq_Assemblies/v2.1/iwgsc_refseqv2.1_assembly.fa.zip -c && \
     unzip iwgsc_refseqv2.1_assembly.fa.zip && \
     mv iwgsc_refseqv2.1_assembly.fa Triticum_aestivum-genome.fasta && \
 	gzip Triticum_aestivum-genome.fasta -f && \
     rm iwgsc_refseqv2.1_assembly.fa.zip
 
+# download genome seqences of Triticum_turgidum
 wget -c ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/900/231/445/GCA_900231445.1_Svevo.v1/GCA_900231445.1_Svevo.v1_genomic.fna.gz -O Triticum_turgidum-genome.fasta.gz
 ```
 Now, all the required input data are present:
 ```
 $ tree
-.
 ├── Triticum_aestivum-genome.fasta.gz
 ├── Triticum_aestivum-sg.config
 ├── Triticum_turgidum-genome.fasta.gz
