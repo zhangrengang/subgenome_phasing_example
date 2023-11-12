@@ -1,8 +1,22 @@
 ## Table of Contents
 
+   * [Introduction](#Introduction)
    * [Installation](#Installation)
    * [Subgenome phasing with WGDI](#Subgenome-phasing-with-WGDI)
    * [Subgenome phasing with SubPhaser](#Subgenome-phasing-with-SubPhaser)
+
+### Introduction ###
+This is an example to phase subgenomes of an allopolyploid complex using 
+([WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser)). 
+Here we use the data of 
+wheat complex (tetraploid–hexaploid reticulate allopolyploidization) as the example. 
+The complex include an allotetraploid (AABB, Triticum turgidum, 2n = 4x = 28) and an allohexaploid (AABBDD, T. aestivum, 2n = 6x = 42).
+Less than 0.8 million years ago (mya), a hybridization event between AA (T. urartu) and BB 
+(a close relative of Aegilops speltoides) genomes
+gave rise to the allopolyploid emmer wheat (AABB).
+Subsequently, less than 0.4 mya, emmer wheat (AABB) hybridized with another wild wheat species
+carrying the D genome (A. tauschii), resulting in the allohexaploid bread wheat (AABBDD).
+We assume that the diploid progenitors of allopolyploid wheats were either extinct or not sampled during the subgenome phasing process.
 
 ### Installation ###
 Firstly, we need to install the required software ([WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser)) for this example.
@@ -25,7 +39,7 @@ conda install -c bioconda wgdi diamond aster phytop newick_utils
 3. Genomic data of outgroup or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required.
 4. Configure files for WGDI.
 
-Here, we just use the example data [Triticum aestivum (AABBDD) and T. turgidum (AABB), and the outgroup Hordeum vulgare] prepared in this repo:
+Here, we just use the example data [T. aestivum (AABBDD) and T. turgidum (AABB), and the outgroup Hordeum vulgare] prepared in this repo:
 ```
 git clone https://github.com/zhangrengang/subgenome_phasing_example
 cd subgenome_phasing_example
@@ -36,7 +50,7 @@ cat *fasta > pep.faa
 Now, all the required input data are present:
 ```
 $ tree
-├── ak.txt
+├── ak.txt	# karyotype of the reference Hordeum_vulgare
 ├── Hordeum_vulgare.fasta
 ├── Hordeum_vulgare.gff
 ├── Hordeum_vulgare.lens
@@ -276,7 +290,7 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 1. Genomic data (genome sequences in fasta format) of the allopolyploid complex are required.
 2. Homoeologous relationships of chromosome are required. These can be obtained from above synteny analyses or whole genome alignments..
 
-Here, we just use the example data [Triticum aestivum (AABBDD) and T. turgidum (AABB)] prepared in this repo:
+Here, we just use the example data [T. aestivum (AABBDD) and T. turgidum (AABB)] prepared in this repo:
 ```
 git clone https://github.com/zhangrengang/subgenome_phasing_example
 cd subgenome_phasing_example
