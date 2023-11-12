@@ -1,0 +1,7 @@
+1H	1	3906	RoyalBlue	1
+2H	1	5167	red	1
+3H	1	4783	#99CC00	1
+4H	1	3633	deepskyblue	1
+5H	1	4780	#339966	1
+6H	1	3690	#FFCC00	1
+7H	1	4668	fuchsia	1
