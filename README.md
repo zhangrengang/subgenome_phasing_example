@@ -32,7 +32,7 @@ conda install -c bioconda wgdi diamond aster phytop newick_utils
 ```
 
 ### Subgenome phasing with WGDI ###
-##### Prepare input data #####
+#### Prepare input data ####
 
 1. Genomic data (protein sequences in fasta format and gene coordinates in custom gff format) of the allopolyploid complex are required.
 2. Genomic data of potential diploid progenitors as far as possible are recommended (here is omitted).
@@ -66,7 +66,7 @@ $ tree
 ├── Triticum_turgidum-Triticum_aestivum.conf
 └── Triticum_turgidum-Triticum_turgidum.conf
 ```
-##### Run all-vs-all BLAST search #####
+#### Run all-vs-all BLAST search ####
 Blast results are also required for WGDI. Here, we run the BLAST search using DIAMOND:
 ```
 # make database
@@ -79,7 +79,7 @@ diamond blastp -d Triticum_turgidum.fasta.dmd -q Hordeum_vulgare.fasta -o Tritic
 diamond blastp -d Triticum_aestivum.fasta.dmd -q Triticum_aestivum.fasta -o Triticum_aestivum-Triticum_aestivum.blast --more-sensitive -p 1 --quiet -e 0.001
 diamond blastp -d Triticum_aestivum.fasta.dmd -q Hordeum_vulgare.fasta -o Triticum_aestivum-Hordeum_vulgare.blast --more-sensitive -p 1 --quiet -e 0.001
 ```
-##### Detect synteny and calculate Ks #####
+#### Detect synteny and calculate Ks ####
 These are basic steps:
 ```
 wgdi -icl Triticum_turgidum-Triticum_aestivum.conf
@@ -99,7 +99,7 @@ wgdi -ks Triticum_aestivum-Hordeum_vulgare.conf
 wgdi -bi Triticum_aestivum-Hordeum_vulgare.conf
 ```
 
-##### [Optional] Seek evidence from Ks-colored dot plots #####
+#### [Optional] Seek evidence from Ks-colored dot plots ####
 To show Ks-colored dot plots:
 ```
 wgdi -bk Triticum_turgidum-Triticum_aestivum.conf
@@ -112,7 +112,7 @@ can be phased out.
 We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (below figure).
 ![Triticum_aestivum.blockks](wgdi/Triticum_aestivum-Triticum_aestivum.blockks.png)
 
-##### Assign subgenome preliminarily #####
+#### Assign subgenome preliminarily ####
 Fisrt, we need to identify orthologous synteny between the outgroup reference and the polyploids, 
 and to visually validate with the Ks-colored dot plots:
 ```
@@ -184,7 +184,7 @@ $ cat Triticum_turgidum.ancestor.txt
 7A      1       4880    fuchsia 2
 7B      1       4244    fuchsia 1
 ```
-##### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence #####
+#### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
 Now, we can apply the assignments and seek the phylogeny-based evidence:
 ```
 wgdi -pc Triticum_turgidum-Hordeum_vulgare.conf
@@ -269,23 +269,24 @@ $ cat Triticum_turgidum.ancestor.txt
 ```
 We re-run the above commands (`-pc`, `-a`, `-at`) to make a final check.
 
-##### [Optional] Seek evidence from biased fractionation #####
+#### [Optional] Seek evidence from biased fractionation ####
 
 ```
 wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -r Triticum_aestivum-Hordeum_vulgare.conf
 ```
 
-##### [Optional] Build subgenome phylogeny #####
+#### [Optional] Build subgenome phylogeny ####
 Then we can build a final subgenome phylogeny:
 ```
 cat Hordeum_vulgare.*.trees.nwk > Hordeum_vulgare.trees.nwk
 astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.astral
 phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
+nw_display Hordeum_vulgare.trees.nwk.astral
 ```
 
 ### Subgenome phasing with SubPhaser ###
-##### Prepare input data #####
+#### Prepare input data ####
 
 1. Genomic data (genome sequences in fasta format) of the allopolyploid complex are required.
 2. Homoeologous relationships of chromosome are required. These can be obtained from above synteny analyses or whole genome alignments..
@@ -300,7 +301,7 @@ cd subphaser
 wget https://urgi.versailles.inra.fr/download/iwgsc/IWGSC_RefSeq_Assemblies/v2.1/iwgsc_refseqv2.1_assembly.fa.zip -c && \
     unzip iwgsc_refseqv2.1_assembly.fa.zip && \
     mv iwgsc_refseqv2.1_assembly.fa Triticum_aestivum-genome.fasta && \
-	gzip Triticum_aestivum-genome.fasta -f && \
+    gzip Triticum_aestivum-genome.fasta -f && \
     rm iwgsc_refseqv2.1_assembly.fa.zip
 
 # download genome seqences of Triticum_turgidum
@@ -315,14 +316,14 @@ $ tree
 └── Triticum_turgidum-sg.config
 ```
 
-##### Run SubPhaser #####
+#### Run SubPhaser ####
 ```
 subphaser -i Triticum_aestivum-genome.fasta.gz -c Triticum_aestivum-sg.config -pre Triticum_aestivum_
 subphaser -i Triticum_turgidum-genome.fasta.gz -c Triticum_turgidum-sg.config -pre Triticum_turgidum_
 ```
 Then we need to check whether well phased.
 ![Triticum_aestivum](subphaser/Triticum_aestivum-merge_figures.png)
-##### [Optional] Convert to WGDI format and build subgenome phylogeny #####
+#### [Optional] Convert to WGDI format and build subgenome phylogeny ####
 Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny.
 
 Link files for WGDI:
@@ -367,4 +368,5 @@ delete_detail = true" > Hordeum_vulgare.conf
 wgdi -at Hordeum_vulgare.conf
 astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.astral
 phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
+nw_display Hordeum_vulgare.trees.nwk.astral
 ```
