@@ -14,16 +14,17 @@ conda env create -f SubPhaser.yaml
 conda activate SubPhaser
 python setup.py install
 
-conda install -c bioconda wgdi diamond phytop newick_utils
+conda install -c bioconda wgdi diamond aster phytop newick_utils
 ```
 
 ### Subgenome phasing with WGDI ###
 ##### Prepare input data #####
 
-    * Genomic data (protein sequences in fasta format and gene coordinates in custom gff format) of the allopolyploid complex are required.
-    * Genomic data of potential diploid progenitors as far as possible are recommended.
-    * Genomic data of outgroup or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required.
-	* Configure files for WGDI.
+1. Genomic data (protein sequences in fasta format and gene coordinates in custom gff format) of the allopolyploid complex are required.
+2. Genomic data of potential diploid progenitors as far as possible are recommended (here is omitted).
+3. Genomic data of outgroup or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required.
+4. Configure files for WGDI.
+
 Here, we just use the example data [Triticum aestivum (AABBDD) and T. turgidum (AABB), and the outgroup Hordeum vulgare] prepared in this repo:
 ```
 git clone https://github.com/zhangrengang/subgenome_phasing_example
@@ -182,9 +183,8 @@ paste Triticum_turgidum-Hordeum_vulgare.alignment.csv Triticum_aestivum-Hordeum_
 
 for chr in $(cut -f1 Hordeum_vulgare.lens)
 do
-awk -v chr=$chr '$1==chr' Hordeum_vulgare.lens > Hordeum_vulgare.$chr.lens
-
-echo "[alignmenttrees]
+	awk -v chr=$chr '$1==chr' Hordeum_vulgare.lens > Hordeum_vulgare.$chr.lens
+	echo "[alignmenttrees]
 alignment = merged.alignment.csv
 gff = Hordeum_vulgare.gff
 lens = Hordeum_vulgare.$chr.lens
@@ -198,9 +198,9 @@ model = MFP
 trimming =  trimal
 minimum = 4
 delete_detail = true" > Hordeum_vulgare.$chr.conf
-wgdi -at Hordeum_vulgare.$chr.conf
-astral-pro -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
-phytop -pie -cp Hordeum_vulgare.$chr.trees.nwk.astral
+	wgdi -at Hordeum_vulgare.$chr.conf
+	astral-pro -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
+	phytop -pie -cp Hordeum_vulgare.$chr.trees.nwk.astral
 done
 ```
 Then, we manually edit the assignments according to the phylogenetic positions:
@@ -273,8 +273,9 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 ### Subgenome phasing with SubPhaser ###
 ##### Prepare input data #####
 
-    * Genomic data (genome sequences in fasta format) of the allopolyploid complex are required.
-    * Homoeologous relationships of chromosome are required. These can be obtained from above synteny analyses or whole genome alignments..
+1. Genomic data (genome sequences in fasta format) of the allopolyploid complex are required.
+2. Homoeologous relationships of chromosome are required. These can be obtained from above synteny analyses or whole genome alignments..
+
 Here, we just use the example data [Triticum aestivum (AABBDD) and T. turgidum (AABB)] prepared in this repo:
 ```
 git clone https://github.com/zhangrengang/subgenome_phasing_example
