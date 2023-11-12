@@ -20,10 +20,10 @@ conda install -c bioconda wgdi diamond phytop newick_utils
 ### Subgenome phasing with WGDI ###
 ##### Prepare input data #####
 
-    - Genomic data (protein sequences in fasta format and gene coordinates in custom gff format) of the allopolyploid complex are required.
-    - Genomic data of potential diploid progenitors as far as possible are recommended.
-    - Genomic data of outgroup or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required.
-	- Configure files for WGDI.
+    * Genomic data (protein sequences in fasta format and gene coordinates in custom gff format) of the allopolyploid complex are required.
+    * Genomic data of potential diploid progenitors as far as possible are recommended.
+    * Genomic data of outgroup or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required.
+	* Configure files for WGDI.
 Here, we just use the example data [Triticum aestivum (AABBDD) and T. turgidum (AABB), and the outgroup Hordeum vulgare] prepared in this repo:
 ```
 git clone https://github.com/zhangrengang/subgenome_phasing_example
@@ -272,8 +272,9 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 
 ### Subgenome phasing with SubPhaser ###
 ##### Prepare input data #####
-    - Genomic data (genome sequences in fasta format) of the allopolyploid complex are required.
-    - Homoeologous relationships of chromosome are required. These can be obtained from above synteny analyses or whole genome alignments..
+
+    * Genomic data (genome sequences in fasta format) of the allopolyploid complex are required.
+    * Homoeologous relationships of chromosome are required. These can be obtained from above synteny analyses or whole genome alignments..
 Here, we just use the example data [Triticum aestivum (AABBDD) and T. turgidum (AABB)] prepared in this repo:
 ```
 git clone https://github.com/zhangrengang/subgenome_phasing_example
