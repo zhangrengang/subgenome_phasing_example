@@ -7,15 +7,15 @@
 
 ### Introduction ###
 This is an example to phase subgenomes of an allopolyploid complex using 
-([WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser)). 
+[WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser)). 
 Here we use the data of 
 wheat complex (tetraploid–hexaploid reticulate allopolyploidization) as the example. 
 The complex include an allotetraploid (AABB, Triticum turgidum, 2n = 4x = 28) and an allohexaploid (AABBDD, T. aestivum, 2n = 6x = 42).
 Less than 0.8 million years ago (mya), a hybridization event between AA (T. urartu) and BB 
 (a close relative of Aegilops speltoides) genomes
-gave rise to the allopolyploid emmer wheat (AABB).
+gave rise to the allopolyploid T. turgidum genome (AABB).
 Subsequently, less than 0.4 mya, emmer wheat (AABB) hybridized with another wild wheat species
-carrying the D genome (A. tauschii), resulting in the allohexaploid bread wheat (AABBDD).
+carrying the D genome (A. tauschii), resulting in the allohexaploid T. aestivum genome (AABBDD).
 We assume that the diploid progenitors of allopolyploid wheats were either extinct or not sampled during the subgenome phasing process.
 
 ### Installation ###
@@ -204,7 +204,6 @@ gff = Hordeum_vulgare.gff
 lens = Hordeum_vulgare.$chr.lens
 dir = Hordeum_vulgare.$chr.tree
 sequence_file = pep.faa
-codon_positon = 1,2,3
 trees_file =  Hordeum_vulgare.$chr.trees.nwk
 align_software = mafft
 tree_software =  iqtree
@@ -215,6 +214,7 @@ delete_detail = true" > Hordeum_vulgare.$chr.conf
 	wgdi -at Hordeum_vulgare.$chr.conf
 	astral-pro -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
 	phytop -pie -cp Hordeum_vulgare.$chr.trees.nwk.astral
+	nw_display Hordeum_vulgare.$chr.trees.nwk.astral
 done
 ```
 Then, we manually edit the assignments according to the phylogenetic positions:
@@ -317,13 +317,54 @@ $ tree
 
 ##### Run SubPhaser #####
 ```
-subphaser -i Triticum_aestivum-genome.fasta.gz -c Triticum_aestivum-sg.config
-subphaser -i Triticum_turgidum-genome.fasta.gz -c Triticum_turgidum-sg.config
+subphaser -i Triticum_aestivum-genome.fasta.gz -c Triticum_aestivum-sg.config -pre Triticum_aestivum_
+subphaser -i Triticum_turgidum-genome.fasta.gz -c Triticum_turgidum-sg.config -pre Triticum_turgidum_
 ```
 Then we need to check whether well phased.
 ![Triticum_aestivum](subphaser/Triticum_aestivum-merge_figures.png)
 ##### [Optional] Convert to WGDI format and build subgenome phylogeny #####
+Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny.
+
+Link files for WGDI:
+```
+ln ../wgdi/*gff ../wgdi/*lens ../wgdi/*Hordeum_vulgare.conf ../wgdi/ak.txt ../wgdi/*Hordeum_vulgare.blockinfo.new.csv ../wgdi/pep.faa .
+```
+
+Convert the output of SubPhaser:
+```
+cat Triticum_aestivum_phase-results/Triticum_aestivum_k15_q200_f2.bin.group | grep -v "#" | awk '$6>=5{print $1"\t"$2"\t"$3"\t"$4}' > Triticum_aestivum.sg.bed
+python ../script/subphaser2wgdi.py Triticum_aestivum.sg.bed Triticum_aestivum.gff Triticum_aestivum.ancestor.txt
+
+cat Triticum_turgidum_phase-results/Triticum_turgidum_k15_q200_f2.bin.group | grep -v "#" | awk '$6>=5{print $1"\t"$2"\t"$3"\t"$4}' > Triticum_turgidum.sg.bed
+python ../script/subphaser2wgdi.py Triticum_turgidum.sg.bed Triticum_turgidum.gff Triticum_turgidum.ancestor.txt
 
 ```
 
+Build the subgenome phylogeny via WGDI:
+```
+wgdi -pc Triticum_turgidum-Hordeum_vulgare.conf
+wgdi -a Triticum_turgidum-Hordeum_vulgare.conf
+
+wgdi -pc Triticum_aestivum-Hordeum_vulgare.conf
+wgdi -a Triticum_aestivum-Hordeum_vulgare.conf
+
+paste Triticum_turgidum-Hordeum_vulgare.alignment.csv Triticum_aestivum-Hordeum_vulgare.alignment.csv | perl -pe 's/\t[^,]+//g' > merged.alignment.csv
+
+echo "[alignmenttrees]
+alignment = merged.alignment.csv
+gff = Hordeum_vulgare.gff
+lens = Hordeum_vulgare.lens
+dir = Hordeum_vulgare.tree
+sequence_file = pep.faa
+trees_file =  Hordeum_vulgare.trees.nwk
+align_software = mafft
+tree_software =  iqtree
+model = MFP
+trimming =  trimal
+minimum = 4
+delete_detail = true" > Hordeum_vulgare.conf
+
+wgdi -at Hordeum_vulgare.conf
+astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.astral
+phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 ```
