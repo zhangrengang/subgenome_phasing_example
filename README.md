@@ -105,9 +105,11 @@ wgdi -bk Triticum_aestivum-Triticum_aestivum.conf
 From the dot plots `Triticum_turgidum-Triticum_aestivum.blockks.png` (below figure), we can find that the D subgenome of Triticum_aestivum shows 
 higher Ks to Triticum_turgidum, while A or B subgenomes of Triticum_aestivum show lower Ks to Triticum_turgidum. Thus, the D subgenome as a singleton
 can be phased out.
-![Triticum_turgidum-Triticum_aestivum.blockks](wgdi/Triticum_turgidum-Triticum_aestivum.blockks.png)
+
+![Triticum_turgidum-Triticum_aestivum.blockks](wgdi/Triticum_turgidum-Triticum_aestivum.blockks.png) | ![Triticum_aestivum.blockks](wgdi/Triticum_aestivum-Triticum_aestivum.blockks.png)
+---|---
+
 We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (below figure).
-![Triticum_aestivum.blockks](wgdi/Triticum_aestivum-Triticum_aestivum.blockks.png)
 
 #### Assign subgenome preliminarily ####
 Fisrt, we need to identify orthologous synteny between the outgroup reference and the polyploids, 
@@ -157,8 +159,8 @@ $ cat Triticum_aestivum.ancestor.txt
 6A      1       4141    #FFCC00 2
 6B      1       4627    #FFCC00 1
 6D      1       4012    #FFCC00 3
-7A      1       5573    fuchsia 2
-7B      1       4892    fuchsia 1
+7A      1       5573    fuchsia 1
+7B      1       4892    fuchsia 2
 7D      1       5419    fuchsia 3
 
 $ cat Triticum_turgidum.ancestor.txt
@@ -178,8 +180,8 @@ $ cat Triticum_turgidum.ancestor.txt
 5B      1       5037    #339966 2
 6A      1       3651    #FFCC00 2
 6B      1       4017    #FFCC00 1
-7A      1       4880    fuchsia 2
-7B      1       4244    fuchsia 1
+7A      1       4880    fuchsia 1
+7B      1       4244    fuchsia 2
 ```
 #### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
 Now, we can apply the assignments and seek the phylogeny-based evidence:
