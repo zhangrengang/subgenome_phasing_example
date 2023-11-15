@@ -321,7 +321,7 @@ subphaser -i Triticum_aestivum-genome.fasta.gz -c Triticum_aestivum-sg.config -p
 subphaser -i Triticum_turgidum-genome.fasta.gz -c Triticum_turgidum-sg.config -pre Triticum_turgidum_
 ```
 Then we need to check whether well phased.
-![Triticum_aestivum](subphaser/Triticum_aestivum-merge_figures.png)
+![Triticum_aestivum](subphaser/Triticum_aestivum-merge_figures.png) | ![Triticum_turgidum](subphaser/Triticum_turgidum-merge_figures.png)
 #### [Optional] Convert to WGDI format and build subgenome phylogeny ####
 Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny.
 
