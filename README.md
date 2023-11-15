@@ -69,11 +69,11 @@ $ tree
 #### Run BLAST search ####
 Blast results are also required for WGDI. Here, we run the pairwise BLAST search using DIAMOND:
 ```
-diamond blastp -d Triticum_turgidum.fasta -q Triticum_turgidum.fasta -o Triticum_turgidum-Triticum_turgidum.blast --more-sensitive -p 1 --quiet -e 0.001
-diamond blastp -d Triticum_turgidum.fasta -q Triticum_aestivum.fasta -o Triticum_turgidum-Triticum_aestivum.blast --more-sensitive -p 1 --quiet -e 0.001
-diamond blastp -d Triticum_turgidum.fasta -q Hordeum_vulgare.fasta -o Triticum_turgidum-Hordeum_vulgare.blast --more-sensitive -p 1 --quiet -e 0.001
-diamond blastp -d Triticum_aestivum.fasta -q Triticum_aestivum.fasta -o Triticum_aestivum-Triticum_aestivum.blast --more-sensitive -p 1 --quiet -e 0.001
-diamond blastp -d Triticum_aestivum.fasta -q Hordeum_vulgare.fasta -o Triticum_aestivum-Hordeum_vulgare.blast --more-sensitive -p 1 --quiet -e 0.001
+diamond blastp -d Triticum_turgidum.fasta -q Triticum_turgidum.fasta -o Triticum_turgidum-Triticum_turgidum.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_turgidum.fasta -q Triticum_aestivum.fasta -o Triticum_turgidum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_turgidum.fasta -q Hordeum_vulgare.fasta -o Triticum_turgidum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_aestivum.fasta -q Triticum_aestivum.fasta -o Triticum_aestivum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_aestivum.fasta -q Hordeum_vulgare.fasta -o Triticum_aestivum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
 ```
 These processes can be speed up by increasing `-p` or parallel computation.
 
