@@ -24,8 +24,8 @@ Here, we just install the software and dependencies via [conda](https://www.anac
 ```
 git clone https://github.com/zhangrengang/SubPhaser
 cd SubPhaser
-conda env create -f SubPhaser.yaml
-conda activate SubPhaser
+conda env create -f SubPhaser.yaml -n SGphasing
+conda activate SGphasing
 python setup.py install
 
 conda install -c bioconda wgdi diamond aster phytop newick_utils
@@ -50,7 +50,7 @@ cat *fasta > pep.faa
 Now, all the required input data are present:
 ```
 $ tree
-├── ak.txt	# karyotype of the reference Hordeum_vulgare
+├── ak.txt    # karyotype of the reference Hordeum_vulgare
 ├── Hordeum_vulgare.fasta
 ├── Hordeum_vulgare.gff
 ├── Hordeum_vulgare.lens
@@ -197,8 +197,8 @@ paste Triticum_turgidum-Hordeum_vulgare.alignment.csv Triticum_aestivum-Hordeum_
 
 for chr in $(cut -f1 Hordeum_vulgare.lens)
 do
-	awk -v chr=$chr '$1==chr' Hordeum_vulgare.lens > Hordeum_vulgare.$chr.lens
-	echo "[alignmenttrees]
+    awk -v chr=$chr '$1==chr' Hordeum_vulgare.lens > Hordeum_vulgare.$chr.lens
+    echo "[alignmenttrees]
 alignment = merged.alignment.csv
 gff = Hordeum_vulgare.gff
 lens = Hordeum_vulgare.$chr.lens
@@ -211,10 +211,10 @@ model = MFP
 trimming =  trimal
 minimum = 4
 delete_detail = true" > Hordeum_vulgare.$chr.conf
-	wgdi -at Hordeum_vulgare.$chr.conf
-	astral-pro -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
-	phytop -pie -cp Hordeum_vulgare.$chr.trees.nwk.astral
-	nw_display Hordeum_vulgare.$chr.trees.nwk.astral
+    wgdi -at Hordeum_vulgare.$chr.conf
+    astral-pro -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
+    phytop -pie -cp Hordeum_vulgare.$chr.trees.nwk.astral
+    nw_display Hordeum_vulgare.$chr.trees.nwk.astral
 done
 ```
 Then, we manually edit the assignments according to the phylogenetic positions:
