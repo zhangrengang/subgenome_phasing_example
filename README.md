@@ -45,7 +45,8 @@ git clone https://github.com/zhangrengang/subgenome_phasing_example
 cd subgenome_phasing_example
 cd wgdi
 gunzip *gz
-cat *fasta > pep.faa
+cat *.pep > pep.faa
+cat *.cds > cds.fa
 ```
 Now, all the required input data are present:
 ```
@@ -69,11 +70,11 @@ $ tree
 #### Run BLAST search ####
 Blast results are also required for WGDI. Here, we run the pairwise BLAST search using DIAMOND:
 ```
-diamond blastp -d Triticum_turgidum.fasta -q Triticum_turgidum.fasta -o Triticum_turgidum-Triticum_turgidum.blast --more-sensitive -p 40 --quiet -e 0.001
-diamond blastp -d Triticum_turgidum.fasta -q Triticum_aestivum.fasta -o Triticum_turgidum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
-diamond blastp -d Triticum_turgidum.fasta -q Hordeum_vulgare.fasta -o Triticum_turgidum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
-diamond blastp -d Triticum_aestivum.fasta -q Triticum_aestivum.fasta -o Triticum_aestivum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
-diamond blastp -d Triticum_aestivum.fasta -q Hordeum_vulgare.fasta -o Triticum_aestivum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_turgidum.pep -q Triticum_turgidum.pep -o Triticum_turgidum-Triticum_turgidum.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_turgidum.pep -q Triticum_aestivum.pep -o Triticum_turgidum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_turgidum.pep -q Hordeum_vulgare.pep -o Triticum_turgidum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_aestivum.pep -q Triticum_aestivum.pep -o Triticum_aestivum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -d Triticum_aestivum.pep -q Hordeum_vulgare.pep -o Triticum_aestivum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
 ```
 These processes can be speed up by increasing `-p` or parallel computation.
 
