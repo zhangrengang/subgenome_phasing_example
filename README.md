@@ -184,14 +184,19 @@ $ cat Triticum_turgidum.ancestor.txt
 7B      1       4244    fuchsia 2
 ```
 #### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
-Now, we can apply the assignments and seek the phylogeny-based evidence:
+Now, we can apply the assignments:
 ```
 wgdi -pc Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -a Triticum_turgidum-Hordeum_vulgare.conf
 
 wgdi -pc Triticum_aestivum-Hordeum_vulgare.conf
 wgdi -a Triticum_aestivum-Hordeum_vulgare.conf
+```
+![iteration1-Triticum_aestivum](wgdi/iteration1/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration1/Triticum_turgidum](wgdi/iteration1/Triticum_turgidum-Hordeum_vulgare.alignment.png)
+---|---
 
+Then, we seek the phylogeny-based evidence:
+```
 paste Triticum_turgidum-Hordeum_vulgare.alignment.csv Triticum_aestivum-Hordeum_vulgare.alignment.csv | perl -pe 's/\t[^,]+//g' > merged.alignment.csv
 
 for chr in $(cut -f1 Hordeum_vulgare.lens)
