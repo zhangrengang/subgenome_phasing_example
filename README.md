@@ -69,10 +69,10 @@ $ tree
 #### Run BLAST search ####
 Blast results are also required for WGDI. Here, we run the pairwise BLAST search using DIAMOND:
 ```
-diamond blastp -d Triticum_aestivum.pep -q Triticum_turgidum.pep -o Triticum_turgidum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
-diamond blastp -d Hordeum_vulgare.pep -q Triticum_turgidum.pep -o Triticum_turgidum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
-diamond blastp -d Triticum_aestivum.pep -q Triticum_aestivum.pep -o Triticum_aestivum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
-diamond blastp -d Hordeum_vulgare.pep -q Triticum_aestivum.pep -o Triticum_aestivum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -q Triticum_turgidum.pep -d Triticum_aestivum.pep -o Triticum_turgidum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -q Triticum_turgidum.pep -d Hordeum_vulgare.pep -o Triticum_turgidum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -q Triticum_aestivum.pep -d Triticum_aestivum.pep -o Triticum_aestivum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
+diamond blastp -q Triticum_aestivum.pep -d Hordeum_vulgare.pep -o Triticum_aestivum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
 ```
 These processes can be speed up by increasing `-p` or parallel computation.
 
