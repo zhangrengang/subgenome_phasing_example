@@ -74,7 +74,7 @@ diamond blastp -q Triticum_turgidum.pep -d Hordeum_vulgare.pep -o Triticum_turgi
 diamond blastp -q Triticum_aestivum.pep -d Triticum_aestivum.pep -o Triticum_aestivum-Triticum_aestivum.blast --more-sensitive -p 40 --quiet -e 0.001
 diamond blastp -q Triticum_aestivum.pep -d Hordeum_vulgare.pep -o Triticum_aestivum-Hordeum_vulgare.blast --more-sensitive -p 40 --quiet -e 0.001
 ```
-These processes can be speed up by increasing `-p` or parallel computation.
+These processes can be speed up by increasing `-p` or using parallel computation.
 
 #### Detect synteny and calculate Ks ####
 These are basic steps:
@@ -124,15 +124,21 @@ wgdi -bk Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -c Triticum_aestivum-Hordeum_vulgare.conf
 wgdi -bk Triticum_aestivum-Hordeum_vulgare.conf
 ```
-If there are non-orthologous syntenic blocks in the dot plots, we need to adjust the parameters (including `homo`, `multiple` and `pvalue`) 
+If there are non-orthologous syntenic blocks in the dot plots (Fig. 2), 
+we need to adjust the parameters (including `homo`, `multiple` and `pvalue`) 
 for `wgdi -c`, and re-run the above commands.
+
+![Triticum_aestivum-Hordeum_vulgare.blockks](wgdi/Triticum_aestivum-Hordeum_vulgare.blockks.png) | ![Triticum_turgidum-Hordeum_vulgare.blockks](wgdi/Triticum_turgidum-Hordeum_vulgare.blockks.png)
+---|---
+
+**Fig. 2. Orthologous syntenic blocks**
 
 Then, we map the karyotype of polyploids to the reference:
 ```
 wgdi -km Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -km Triticum_aestivum-Hordeum_vulgare.conf
 ```
-This step generates the mapping files of polyploids: `Triticum_turgidum.ancestor.txt` and `Triticum_aestivum.ancestor.txt`.
+This step generates the mapping files of two wheats: `Triticum_turgidum.ancestor.txt` and `Triticum_aestivum.ancestor.txt`.
 
 At this stage, we need to manually eidt the two files to assign subgenomes. 
 We have phased the D subgenome based on Ks-based evidence, 
@@ -200,7 +206,7 @@ wgdi -a Triticum_aestivum-Hordeum_vulgare.conf
 ![iteration1-Triticum_aestivum](wgdi/iteration1/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration1/Triticum_turgidum](wgdi/iteration1/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
 
-**Fig. 2. Subgenome assignments based on Ks evidence.** The same colored dot plots indicate the same subgenome assignments.
+**Fig. 3. Subgenome assignments based on Ks evidence.** The same colored dot plots indicate the same subgenome assignments.
 
 #### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
 
@@ -327,7 +333,7 @@ We re-run the above commands (`-pc`, `-a`, `-at`):
 ![iteration2-Triticum_aestivum](wgdi/iteration2/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration2/Triticum_turgidum](wgdi/iteration2/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
 
-**Fig. 3. Refined subgenome assignments based on phylogeny evidence.**
+**Fig. 4. Refined subgenome assignments based on phylogeny evidence.**
 
 Now, all the topologies are identical:
 ```
@@ -381,7 +387,7 @@ wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
 ![Triticum_aestivum.retain](wgdi/Triticum_aestivum-Hordeum_vulgare.alignment.retain.png) | ![Triticum_turgidum.retain](wgdi/Triticum_turgidum-Hordeum_vulgare.alignment.retain.png)
 ---|---
 
-**Fig. 4. Gene retain of subgenomes.**
+**Fig. 5. Gene retain of subgenomes.**
 
 However, biased fractionation patterns to distinguish subgenomes are not observed.
 
@@ -432,13 +438,13 @@ subphaser -i Triticum_turgidum-genome.fasta.gz -c Triticum_turgidum-sg.config -p
 ```
 Then we need to check whether the genomes have been well phased and whether the identified potential exchanges are confident: 
 
-On the clustering heatmap (Fig. 5B) and PCA plot (Fig. 5C), a subgenome is defined as well-phased 
+On the clustering heatmap (Fig. 6B) and PCA plot (Fig. 6C), a subgenome is defined as well-phased 
 if it has clearly distinguishable patterns of both differential k-mers and homeologous chromosomes, 
 indicating that each subgenome shares subgenome-specific features as expected.
 
 SubPhaser outputs all windows whose enrichments do not match the subgenome assignments of 
 their chromosome as potential exchanges, but further manual checks are still needed to 
-identify them as bona fide exchanges. For example, at the 3’ end of wheat chr4A (Fig. 5D), 
+identify them as bona fide exchanges. For example, at the 3’ end of wheat chr4A (Fig. 6D), 
 the significant enrichments of subgenome B-specific k-mers are continuous (2nd from outer to inner circles), 
 and the subgenome B-specific k-mers are as abundant as those on the chromosomes of subgenome B (5th circle) 
 which contrasts to other subgenomes (4th and 6th circles). 
@@ -450,7 +456,7 @@ inference should be careful and cautious to avoid type II errors.
 ![Triticum_aestivum](subphaser/Triticum_aestivum-merge_figures.png) | ![Triticum_turgidum](subphaser/Triticum_turgidum-merge_figures.png)
 ---|---
 
-**Fig. 5. Subgenome assignments based on subgenome-specific kmers.**
+**Fig. 6. Subgenome assignments based on subgenome-specific kmers.**
 
 
 #### [Optional] Convert to WGDI format and build subgenome phylogeny ####
