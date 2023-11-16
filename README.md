@@ -327,7 +327,7 @@ We re-run the above commands (`-pc`, `-a`, `-at`):
 ![iteration2-Triticum_aestivum](wgdi/iteration2/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration2/Triticum_turgidum](wgdi/iteration2/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
 
-**Fig. 3. Refined subgenome assignments based on phylogeny evidence. **
+**Fig. 3. Refined subgenome assignments based on phylogeny evidence.**
 
 Now, all the topologies are identical:
 ```
@@ -430,7 +430,22 @@ $ tree
 subphaser -i Triticum_aestivum-genome.fasta.gz -c Triticum_aestivum-sg.config -pre Triticum_aestivum_
 subphaser -i Triticum_turgidum-genome.fasta.gz -c Triticum_turgidum-sg.config -pre Triticum_turgidum_
 ```
-Then we need to check whether well phased.
+Then we need to check whether the genomes have been well phased and whether the identified potential exchanges are confident: 
+
+On the clustering heatmap (Fig. 5B) and PCA plot (Fig. 5C), a subgenome is defined as well-phased 
+if it has clearly distinguishable patterns of both differential k-mers and homeologous chromosomes, 
+indicating that each subgenome shares subgenome-specific features as expected.
+
+SubPhaser outputs all windows whose enrichments do not match the subgenome assignments of 
+their chromosome as potential exchanges, but further manual checks are still needed to 
+identify them as bona fide exchanges. For example, at the 3’ end of wheat chr4A (Fig. 5D), 
+the significant enrichments of subgenome B-specific k-mers are continuous (2nd from outer to inner circles), 
+and the subgenome B-specific k-mers are as abundant as those on the chromosomes of subgenome B (5th circle) 
+which contrasts to other subgenomes (4th and 6th circles). 
+Combining all this information, we can confidently conclude that there has been an exchange, 
+since the possibility of assembly errors has been ruled out with Hi-C data previously, etc. 
+Since the distributions of subgenome-specific k-mers are usually uneven across the genome, 
+inference should be careful and cautious to avoid type II errors.
 
 ![Triticum_aestivum](subphaser/Triticum_aestivum-merge_figures.png) | ![Triticum_turgidum](subphaser/Triticum_turgidum-merge_figures.png)
 ---|---
@@ -439,7 +454,7 @@ Then we need to check whether well phased.
 
 
 #### [Optional] Convert to WGDI format and build subgenome phylogeny ####
-Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny.
+Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny by the same method.
 
 Link files for WGDI:
 ```
