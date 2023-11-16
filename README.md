@@ -102,14 +102,17 @@ To show Ks-colored dot plots:
 wgdi -bk Triticum_turgidum-Triticum_aestivum.conf
 wgdi -bk Triticum_aestivum-Triticum_aestivum.conf
 ```
-From the dot plots `Triticum_turgidum-Triticum_aestivum.blockks.png` (below figure), we can find that the D subgenome of Triticum_aestivum shows 
-higher Ks to Triticum_turgidum, while A or B subgenomes of Triticum_aestivum show lower Ks to Triticum_turgidum. Thus, the D subgenome as a singleton
-can be phased out.
+From the dot plots `Triticum_turgidum-Triticum_aestivum.blockks.png`, 
+we can find that the D subgenome of Triticum_aestivum shows 
+higher Ks to Triticum_turgidum, while A or B subgenomes of Triticum_aestivum show lower Ks to Triticum_turgidum (Fig. 1 left). 
+Thus, the D subgenome as a singleton can be phased out.
 
 ![Triticum_turgidum-Triticum_aestivum.blockks](wgdi/Triticum_turgidum-Triticum_aestivum.blockks.png) | ![Triticum_aestivum.blockks](wgdi/Triticum_aestivum-Triticum_aestivum.blockks.png)
 ---|---
 
-We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (below figure).
+Fig. 1. Ks-colored dot plots between Triticum_turgidum and Triticum_aestivum (left) and within Triticum_aestivum (right).
+
+We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (Fig. 1 right).
 
 #### Assign subgenome preliminarily ####
 Fisrt, we need to identify orthologous synteny between the outgroup reference and the polyploids, 
@@ -133,7 +136,8 @@ This step generates the mapping files of polyploids: `Triticum_turgidum.ancestor
 
 At this stage, we need to manually eidt the two files to assign subgenomes. 
 We have phased the D subgenome based on Ks-based evidence, 
-so we number the blocks of D subgenome as 3, but randomly number those of A or B subgenomes as 1 or 2: 
+so we number the blocks of D subgenome as 3, but have to randomly number those of A or B subgenomes as 1 or 2 
+(but the assignments of A/B subgenomes of both wheat are consistant based on the inter-genomic similarity/orthology): 
 ```
 $ cat Triticum_aestivum.ancestor.txt
 1A      1       4359    RoyalBlue       2
@@ -195,6 +199,8 @@ wgdi -a Triticum_aestivum-Hordeum_vulgare.conf
 ```
 ![iteration1-Triticum_aestivum](wgdi/iteration1/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration1/Triticum_turgidum](wgdi/iteration1/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
+
+Fig. 2. Subgenome assignments based on Ks evidence. The same colored dot plots indicate the same subgenome assignments.
 
 #### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
 
@@ -321,6 +327,8 @@ We re-run the above commands (`-pc`, `-a`, `-at`):
 ![iteration2-Triticum_aestivum](wgdi/iteration2/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration2/Triticum_turgidum](wgdi/iteration2/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
 
+Fig. 3. Refined subgenome assignments based on phylogeny evidence. 
+
 Now, all the topologies are identical:
 ```
 chr1-3H:
@@ -373,6 +381,8 @@ wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
 ![Triticum_aestivum.retain](wgdi/Triticum_aestivum-Hordeum_vulgare.alignment.retain.png) | ![Triticum_turgidum.retain](wgdi/Triticum_turgidum-Hordeum_vulgare.alignment.retain.png)
 ---|---
 
+Fig. 4. Gene retain of subgenomes.
+
 However, biased fractionation patterns to distinguish subgenomes are not observed.
 
 #### [Optional] Build subgenome phylogeny ####
@@ -424,6 +434,9 @@ Then we need to check whether well phased.
 
 ![Triticum_aestivum](subphaser/Triticum_aestivum-merge_figures.png) | ![Triticum_turgidum](subphaser/Triticum_turgidum-merge_figures.png)
 ---|---
+
+Fig. 5. Subgenome assignments based on subgenome-specific kmers.
+
 
 #### [Optional] Convert to WGDI format and build subgenome phylogeny ####
 Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny.
