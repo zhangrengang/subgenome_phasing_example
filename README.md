@@ -195,7 +195,7 @@ $ cat Triticum_turgidum.ancestor.txt
 ```
 The fragmented segments are assigned according to the complementarity of segments. For example, the large segment of chr4A-3' is assigned together with chr7B because they are complementary.
 
-Now, we can apply the assignments (`-pc`) and generate alignments (`-a`):
+Now, we can apply the assignments (`wgdi -pc`) and generate alignments (`wgdi -a`):
 ```
 wgdi -pc Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -a Triticum_turgidum-Hordeum_vulgare.conf
@@ -210,7 +210,7 @@ wgdi -a Triticum_aestivum-Hordeum_vulgare.conf
 
 #### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
 
-We merge the alignments and build chromosome phylogeny to seek the phylogeny-based evidence (`-at`):
+We merge the alignments and build chromosome phylogeny to seek the phylogeny-based evidence (`wgdi -at`):
 ```
 paste Triticum_turgidum-Hordeum_vulgare.alignment.csv Triticum_aestivum-Hordeum_vulgare.alignment.csv | perl -pe 's/\t[^,]+//g' > merged.alignment.csv
 
@@ -329,7 +329,7 @@ $ cat Triticum_turgidum.ancestor.txt
 7A      1       4880    fuchsia 1
 7B      1       4244    fuchsia 2
 ```
-We re-run the above commands (`-pc`, `-a`, `-at`):
+We re-run the above commands (`wgdi -pc`, `-a`, `-at`):
 ![iteration2-Triticum_aestivum](wgdi/iteration2/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration2/Triticum_turgidum](wgdi/iteration2/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
 
@@ -376,10 +376,10 @@ chr7H:
         \-----+
               \------------+ 5
 ```
-These processes (`-pc`, `-a`, `-at`) may be performed more than two iterations to generate such a consistant phylogeny.
+These processes (`wgdi -pc`, `-a`, `-at`) may be performed more than two iterations to generate such a consistant phylogeny.
 
 #### [Optional] Seek evidence from biased fractionation ####
-We analysize the gene retain (`-r`):
+We analysize the gene retain (`wgdi -r`):
 ```
 wgdi -r Triticum_aestivum-Hordeum_vulgare.conf
 wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
@@ -400,7 +400,7 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
 ![subgenome phylogeny](wgdi/Hordeum_vulgare.trees.nwk.astral.png)
-**Fig. 6. Subgenome phylogeny**
+**Fig. 6. Subgenome phylogeny.**
 
 ### Subgenome phasing with SubPhaser ###
 #### Prepare input data ####
