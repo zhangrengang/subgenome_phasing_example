@@ -183,8 +183,8 @@ $ cat Triticum_turgidum.ancestor.txt
 7A      1       4880    fuchsia 1
 7B      1       4244    fuchsia 2
 ```
-#### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
-Now, we can apply the assignments:
+
+Now, we can apply the assignments (`-pc`) and generate alignments (`-a`):
 ```
 wgdi -pc Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -a Triticum_turgidum-Hordeum_vulgare.conf
@@ -195,7 +195,9 @@ wgdi -a Triticum_aestivum-Hordeum_vulgare.conf
 ![iteration1-Triticum_aestivum](wgdi/iteration1/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration1/Triticum_turgidum](wgdi/iteration1/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
 
-Then, we seek the phylogeny-based evidence:
+#### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
+
+We merge the alignments and seek the phylogeny-based evidence (`-at`):
 ```
 paste Triticum_turgidum-Hordeum_vulgare.alignment.csv Triticum_aestivum-Hordeum_vulgare.alignment.csv | perl -pe 's/\t[^,]+//g' > merged.alignment.csv
 
@@ -218,8 +220,63 @@ delete_detail = true" > Hordeum_vulgare.$chr.conf
     wgdi -at Hordeum_vulgare.$chr.conf
     astral-pro -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
     phytop -pie -cp Hordeum_vulgare.$chr.trees.nwk.astral
-    nw_display Hordeum_vulgare.$chr.trees.nwk.astral
+    nw_topology -I Hordeum_vulgare.$chr.trees.nwk.astral | nw_order - | nw_display - -w 50
 done
+```
+The following is the topology of these chromosome phylogeny:
+```
+chr1-2
+ /-------------------------+ 1   /-------------------------+ 1
+ |                               |
+ |            /------------+ 2   |                  /------+ 2
+=+      /-----+                 =+            /-----+
+ |      |     \------------+ 4   |      /-----+     \------+ 4
+ |      |                        |      |     |
+ \------+           /------+ 3   |      |     \------------+ 6
+        |     /-----+            \------+
+        \-----+     \------+ 5          |     /------------+ 3
+              |                         \-----+
+              \------------+ 6                \------------+ 5
+
+chr3-4
+ /-------------------------+ 1   /-------------------------+ 1
+ |                               |
+ |                  /------+ 2   |                  /------+ 2
+=+            /-----+           =+            /-----+
+ |      /-----+     \------+ 4   |      /-----+     \------+ 4
+ |      |     |                  |      |     |
+ |      |     \------------+ 6   |      |     \------------+ 6
+ \------+                        \------+
+        |     /------------+ 3          |     /------------+ 3
+        \-----+                         \-----+
+              \------------+ 5                \------------+ 5
+
+chr5-6
+ /-------------------------+ 1   /-------------------------+ 1
+ |                               |
+ |                  /------+ 2   |            /------------+ 2
+=+            /-----+           =+      /-----+
+ |      /-----+     \------+ 4   |      |     \------------+ 4
+ |      |     |                  |      |
+ |      |     \------------+ 6   \------+           /------+ 3
+ \------+                               |     /-----+
+        |     /------------+ 3          \-----+     \------+ 5
+        \-----+                               |
+              \------------+ 5                \------------+ 6
+
+chr7
+ /-------------------------+ 1
+ |
+ |                  /------+ 2
+=+            /-----+
+ |      /-----+     \------+ 4
+ |      |     |
+ |      |     \------------+ 6
+ \------+
+        |     /------------+ 3
+        \-----+
+              \------------+ 5
+
 ```
 Then, we manually edit the assignments according to the phylogenetic positions:
 ```
