@@ -373,7 +373,7 @@ wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
 ![Triticum_aestivum.retain](wgdi/Triticum_aestivum-Hordeum_vulgare.alignment.retain.png) | ![Triticum_turgidum.retain](wgdi/Triticum_turgidum-Hordeum_vulgare.alignment.retain.png)
 ---|---
 
-However, no biased fractionation patterns to distinguish subgenomes are obaserved.
+However, biased fractionation patterns to distinguish subgenomes are not observed.
 
 #### [Optional] Build subgenome phylogeny ####
 Then we can build a final subgenome phylogeny:
