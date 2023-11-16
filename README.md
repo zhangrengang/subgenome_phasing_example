@@ -102,7 +102,7 @@ To show Ks-colored dot plots:
 wgdi -bk Triticum_turgidum-Triticum_aestivum.conf
 wgdi -bk Triticum_aestivum-Triticum_aestivum.conf
 ```
-From the dot plots `Triticum_turgidum-Triticum_aestivum.blockks.png`, 
+From the resulted dot plots, 
 we can find that the D subgenome of Triticum_aestivum shows 
 higher Ks to Triticum_turgidum, while A or B subgenomes of Triticum_aestivum show lower Ks to Triticum_turgidum (Fig. 1 left). 
 Thus, the D subgenome as a singleton can be phased out.
