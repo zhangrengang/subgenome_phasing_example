@@ -183,6 +183,7 @@ $ cat Triticum_turgidum.ancestor.txt
 7A      1       4880    fuchsia 1
 7B      1       4244    fuchsia 2
 ```
+The fragmented segments are assigned according to the complementarity of segments. For example, the large segment of chr4A-3' is assigned together with chr7B because they are complementary.
 
 Now, we can apply the assignments (`-pc`) and generate alignments (`-a`):
 ```
