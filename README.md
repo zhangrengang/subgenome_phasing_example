@@ -131,7 +131,7 @@ for `wgdi -c`, and re-run the above commands.
 ![Triticum_aestivum-Hordeum_vulgare.blockks](wgdi/Triticum_aestivum-Hordeum_vulgare.blockks.png) | ![Triticum_turgidum-Hordeum_vulgare.blockks](wgdi/Triticum_turgidum-Hordeum_vulgare.blockks.png)
 ---|---
 
-**Fig. 2. Orthologous syntenic blocks**
+**Fig. 2. Orthologous synteny.**
 
 Then, we map the karyotype of polyploids to the reference:
 ```
