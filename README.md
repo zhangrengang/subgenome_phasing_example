@@ -210,7 +210,7 @@ wgdi -a Triticum_aestivum-Hordeum_vulgare.conf
 
 #### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
 
-We merge the alignments and seek the phylogeny-based evidence (`-at`):
+We merge the alignments and build chromosome phylogeny to seek the phylogeny-based evidence (`-at`):
 ```
 paste Triticum_turgidum-Hordeum_vulgare.alignment.csv Triticum_aestivum-Hordeum_vulgare.alignment.csv | perl -pe 's/\t[^,]+//g' > merged.alignment.csv
 
@@ -460,7 +460,7 @@ inference should be careful and cautious to avoid type II errors.
 
 
 #### [Optional] Convert to WGDI format and build subgenome phylogeny ####
-Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny by the same method.
+Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny using the same method.
 
 Link files for WGDI:
 ```
@@ -477,7 +477,7 @@ python ../script/subphaser2wgdi.py Triticum_turgidum.sg.bed Triticum_turgidum.gf
 
 ```
 
-Build the subgenome phylogeny via WGDI:
+Build the subgenome phylogeny using WGDI:
 ```
 wgdi -pc Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -a Triticum_turgidum-Hordeum_vulgare.conf
