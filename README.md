@@ -110,7 +110,7 @@ Thus, the D subgenome as a singleton can be phased out.
 ![Triticum_turgidum-Triticum_aestivum.blockks](wgdi/Triticum_turgidum-Triticum_aestivum.blockks.png) | ![Triticum_aestivum.blockks](wgdi/Triticum_aestivum-Triticum_aestivum.blockks.png)
 ---|---
 
-Fig. 1. Ks-colored dot plots between Triticum_turgidum and Triticum_aestivum (left) and within Triticum_aestivum (right).
+Fig. 1. Ks-colored dot plots between Triticum_turgidum and Triticum_aestivum (left) and within Triticum_aestivum (right). The lower Ks indicates the higher similarity, and the lowest inter-genomic Ks (e.g. chr1A ~ chr1A between the two wheats) indicates orthology.
 
 We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (Fig. 1 right).
 
