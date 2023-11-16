@@ -364,11 +364,14 @@ chr7H:
 These processes (`-pc`, `-a`, `-at`) may be performed more than two iterations to generate such a consistant phylogeny.
 
 #### [Optional] Seek evidence from biased fractionation ####
-
+We analysize the gene retain (`-r`):
 ```
-wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -r Triticum_aestivum-Hordeum_vulgare.conf
+wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
 ```
+![Triticum_aestivum.retain](Triticum_aestivum-Hordeum_vulgare.alignment.retain.png) | ![Triticum_turgidum.retain](Triticum_turgidum-Hordeum_vulgare.alignment.retain.png)
+---|---
+However, no biased fractionation patterns to distinguish subgenomes are obaserved.
 
 #### [Optional] Build subgenome phylogeny ####
 Then we can build a final subgenome phylogeny:
