@@ -369,8 +369,9 @@ We analysize the gene retain (`-r`):
 wgdi -r Triticum_aestivum-Hordeum_vulgare.conf
 wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
 ```
-![Triticum_aestivum.retain](Triticum_aestivum-Hordeum_vulgare.alignment.retain.png) | ![Triticum_turgidum.retain](Triticum_turgidum-Hordeum_vulgare.alignment.retain.png)
+![Triticum_aestivum.retain](wgdi/Triticum_aestivum-Hordeum_vulgare.alignment.retain.png) | ![Triticum_turgidum.retain](wgdi/Triticum_turgidum-Hordeum_vulgare.alignment.retain.png)
 ---|---
+
 However, no biased fractionation patterns to distinguish subgenomes are obaserved.
 
 #### [Optional] Build subgenome phylogeny ####
