@@ -399,6 +399,8 @@ astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.a
 phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
+![subgenome phylogeny](Hordeum_vulgare.trees.nwk.astral.png)
+**Fig. 6. Subgenome phylogeny**
 
 ### Subgenome phasing with SubPhaser ###
 #### Prepare input data ####
