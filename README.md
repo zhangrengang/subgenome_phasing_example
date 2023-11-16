@@ -110,7 +110,7 @@ Thus, the D subgenome as a singleton can be phased out.
 ![Triticum_turgidum-Triticum_aestivum.blockks](wgdi/Triticum_turgidum-Triticum_aestivum.blockks.png) | ![Triticum_aestivum.blockks](wgdi/Triticum_aestivum-Triticum_aestivum.blockks.png)
 ---|---
 
-Fig. 1. Ks-colored dot plots between Triticum_turgidum and Triticum_aestivum (left) and within Triticum_aestivum (right). The lower Ks indicates the higher similarity, and the lowest inter-genomic Ks (e.g. chr1A ~ chr1A between the two wheats) indicates orthology.
+**Fig. 1. Ks-colored dot plots between Triticum_turgidum and Triticum_aestivum (left) and within Triticum_aestivum (right).** The lower Ks indicates the higher similarity, and the lowest inter-genomic Ks (e.g. the red colored in the left panel) indicates orthology.
 
 We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (Fig. 1 right).
 
@@ -200,7 +200,7 @@ wgdi -a Triticum_aestivum-Hordeum_vulgare.conf
 ![iteration1-Triticum_aestivum](wgdi/iteration1/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration1/Triticum_turgidum](wgdi/iteration1/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
 
-Fig. 2. Subgenome assignments based on Ks evidence. The same colored dot plots indicate the same subgenome assignments.
+**Fig. 2. Subgenome assignments based on Ks evidence.** The same colored dot plots indicate the same subgenome assignments.
 
 #### Reconstruct phylogeny by chromosomes and refine the assignments with the phylogeny-based evidence ####
 
@@ -327,7 +327,7 @@ We re-run the above commands (`-pc`, `-a`, `-at`):
 ![iteration2-Triticum_aestivum](wgdi/iteration2/Triticum_aestivum-Hordeum_vulgare.alignment.png) | ![iteration2/Triticum_turgidum](wgdi/iteration2/Triticum_turgidum-Hordeum_vulgare.alignment.png)
 ---|---
 
-Fig. 3. Refined subgenome assignments based on phylogeny evidence. 
+**Fig. 3. Refined subgenome assignments based on phylogeny evidence. **
 
 Now, all the topologies are identical:
 ```
@@ -381,7 +381,7 @@ wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
 ![Triticum_aestivum.retain](wgdi/Triticum_aestivum-Hordeum_vulgare.alignment.retain.png) | ![Triticum_turgidum.retain](wgdi/Triticum_turgidum-Hordeum_vulgare.alignment.retain.png)
 ---|---
 
-Fig. 4. Gene retain of subgenomes.
+**Fig. 4. Gene retain of subgenomes.**
 
 However, biased fractionation patterns to distinguish subgenomes are not observed.
 
@@ -435,7 +435,7 @@ Then we need to check whether well phased.
 ![Triticum_aestivum](subphaser/Triticum_aestivum-merge_figures.png) | ![Triticum_turgidum](subphaser/Triticum_turgidum-merge_figures.png)
 ---|---
 
-Fig. 5. Subgenome assignments based on subgenome-specific kmers.
+**Fig. 5. Subgenome assignments based on subgenome-specific kmers.**
 
 
 #### [Optional] Convert to WGDI format and build subgenome phylogeny ####
