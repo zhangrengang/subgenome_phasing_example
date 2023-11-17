@@ -126,7 +126,8 @@ wgdi -bk Triticum_aestivum-Hordeum_vulgare.conf
 ```
 If there are non-orthologous syntenic blocks in the dot plots (Fig. 2), 
 we need to adjust the parameters (including `homo`, `multiple` and `pvalue`) 
-for `wgdi -c`, and re-run the above commands.
+for `wgdi -c`, and re-run the above commands. Sometimes, we need to delete the 
+out-paralogous blocks from the `blockinfo` file manually.
 
 ![Triticum_aestivum-Hordeum_vulgare.blockks](wgdi/Triticum_aestivum-Hordeum_vulgare.blockks.png) | ![Triticum_turgidum-Hordeum_vulgare.blockks](wgdi/Triticum_turgidum-Hordeum_vulgare.blockks.png)
 ---|---
@@ -138,7 +139,7 @@ Then, we map the karyotype of polyploids to the reference:
 wgdi -km Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -km Triticum_aestivum-Hordeum_vulgare.conf
 ```
-This step generates the mapping files of two wheats: `Triticum_turgidum.ancestor.txt` and `Triticum_aestivum.ancestor.txt`.
+This step generates the karyotype mapping files of two wheats: `Triticum_turgidum.ancestor.txt` and `Triticum_aestivum.ancestor.txt`.
 
 At this stage, we need to manually eidt the two files to assign subgenomes. 
 We have phased the D subgenome based on Ks-based evidence, 
@@ -279,7 +280,7 @@ chr7H:
 ```
 The tip numbers in the trees are corresponding with the columns of `merged.alignment.csv`, so `1` = `Hordeum_vulgare`, 
 `2-3` = `Triticum_turgidum`, `4-6` = `Triticum_aestivum`. We can find that all the topologies are identical (i.e. `((A, D), B)`) in fact, thus
-we manually edit the assignments according to the phylogenetic positions:
+we manually adjust the assignments according to the phylogenetic positions:
 ```
 $ cat Triticum_aestivum.ancestor.txt
 1A      1       4359    RoyalBlue       1
@@ -379,7 +380,7 @@ chr7H:
 These processes (`wgdi -pc`, `-a`, `-at`) may be performed more than two iterations to generate such a consistant phylogeny.
 
 #### [Optional] Seek evidence from biased fractionation ####
-We analysize the gene retain (`wgdi -r`):
+We analyze the gene retain (`wgdi -r`):
 ```
 wgdi -r Triticum_aestivum-Hordeum_vulgare.conf
 wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
@@ -400,13 +401,15 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
 ![subgenome phylogeny](wgdi/Hordeum_vulgare.trees.nwk.astral.png)
-**Fig. 6. Subgenome phylogeny.**
+**Fig. 6. Subgenome phylogeny.** `1` = `Hordeum_vulgare`,
+`2` = `Triticum_turgidum A`, `3` = `Triticum_turgidum B`, `4` = `Triticum_aestivum A`, 
+`5` = `Triticum_aestivum B`, `6` = `Triticum_aestivum D`.
 
 ### Subgenome phasing with SubPhaser ###
 #### Prepare input data ####
 
 1. Genomic data (genome sequences in fasta format) of the allopolyploid complex are required.
-2. Homoeologous relationships of chromosome are required. These can be obtained from above synteny analyses or whole genome alignments..
+2. Homoeologous relationships of chromosomes are required. These can be obtained from above synteny analyses or whole genome alignments..
 
 Here, we just use the example data [T. aestivum (AABBDD) and T. turgidum (AABB)] prepared in this repo:
 ```
@@ -469,14 +472,13 @@ Link files for WGDI:
 ln ../wgdi/*gff ../wgdi/*lens ../wgdi/*Hordeum_vulgare.conf ../wgdi/ak.txt ../wgdi/*Hordeum_vulgare.blockinfo.new.csv ../wgdi/pep.faa .
 ```
 
-Convert the output of SubPhaser:
+Convert the output of SubPhaser, with discarding segments < 5 Mb:
 ```
 cat Triticum_aestivum_phase-results/Triticum_aestivum_k15_q200_f2.bin.group | grep -v "#" | awk '$6>=5{print $1"\t"$2"\t"$3"\t"$4}' > Triticum_aestivum.sg.bed
 python ../script/subphaser2wgdi.py Triticum_aestivum.sg.bed Triticum_aestivum.gff Triticum_aestivum.ancestor.txt
 
 cat Triticum_turgidum_phase-results/Triticum_turgidum_k15_q200_f2.bin.group | grep -v "#" | awk '$6>=5{print $1"\t"$2"\t"$3"\t"$4}' > Triticum_turgidum.sg.bed
 python ../script/subphaser2wgdi.py Triticum_turgidum.sg.bed Triticum_turgidum.gff Triticum_turgidum.ancestor.txt
-
 ```
 
 Build the subgenome phylogeny using WGDI:
