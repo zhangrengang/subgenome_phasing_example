@@ -401,7 +401,7 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
 ![subgenome phylogeny](wgdi/Hordeum_vulgare.trees.nwk.astral.png)
-**Fig. 6. Subgenome phylogeny.** `1` = `Hordeum_vulgare`,
+**Fig. 6. Subgenome phylogeny from phased results of WGDI.** `1` = `Hordeum_vulgare`,
 `2` = `Triticum_turgidum A`, `3` = `Triticum_turgidum B`, `4` = `Triticum_aestivum A`, 
 `5` = `Triticum_aestivum B`, `6` = `Triticum_aestivum D`.
 
@@ -510,3 +510,9 @@ astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.a
 phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
+
+![subgenome phylogeny](subphaser/Hordeum_vulgare.trees.nwk.astral.png)
+**Fig. 6. Subgenome phylogeny from phased results of SubPhaser.** `1` = `Hordeum_vulgare`,
+`2` = `Triticum_turgidum A`, `3` = `Triticum_turgidum B`, `4` = `Triticum_aestivum A`,
+`5` = `Triticum_aestivum B`, `6` = `Triticum_aestivum D`.
+
