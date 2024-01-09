@@ -4,6 +4,7 @@
    * [Installation](#Installation)
    * [Subgenome phasing with WGDI](#Subgenome-phasing-with-WGDI)
    * [Subgenome phasing with SubPhaser](#Subgenome-phasing-with-SubPhaser)
+   * [Citation](#Citation)
 
 ### Introduction ###
 This is an example to phase subgenomes of an allopolyploid complex using 
@@ -515,4 +516,8 @@ nw_display Hordeum_vulgare.trees.nwk.astral
 **Fig. 6. Subgenome phylogeny from phased results of SubPhaser.** `1` = `Hordeum_vulgare`,
 `2` = `Triticum_turgidum A`, `3` = `Triticum_turgidum B`, `4` = `Triticum_aestivum A`,
 `5` = `Triticum_aestivum B`, `6` = `Triticum_aestivum D`.
+
+### Citation ###
+If you use this pipeline, please cite:
+> Zhang RG, Shang HY, Jia KH, Ma YP. Subgenome phasing for complex allopolyploidy: case-based benchmarking and recommendations [J]. *Brief. Bioinform.*, 2024, 25 (1): bbad513 [DOI:10.1093/bib/bbad513](http://doi.org/10.1093/bib/bbad513)
 
