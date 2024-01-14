@@ -11,12 +11,13 @@ This is an example to phase subgenomes of an allopolyploid complex using
 [WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser)). 
 Here we use the data of 
 wheat complex (tetraploid–hexaploid reticulate allopolyploidization) as the example. 
-The complex include an allotetraploid (AABB, Triticum turgidum, 2n = 4x = 28) and an allohexaploid (AABBDD, T. aestivum, 2n = 6x = 42).
+The complex include an allotetraploid (AABB, *Triticum turgidum*, 2n = 4x = 28) and 
+an allohexaploid (AABBDD, *T. aestivum*, 2n = 6x = 42).
 Less than 0.8 million years ago (mya), a hybridization event between AA (T. urartu) and BB 
-(a close relative of Aegilops speltoides) genomes
-gave rise to the allopolyploid T. turgidum genome (AABB).
+(a close relative of *Aegilops speltoides*) genomes
+gave rise to the allopolyploid *T. turgidum* genome (AABB).
 Subsequently, less than 0.4 mya, emmer wheat (AABB) hybridized with another wild wheat species
-carrying the D genome (A. tauschii), resulting in the allohexaploid T. aestivum genome (AABBDD).
+carrying the D genome (*A. tauschii*), resulting in the allohexaploid *T. aestivum* genome (AABBDD).
 We assume that the diploid progenitors of allopolyploid wheats were either extinct or not sampled during the subgenome phasing process.
 
 ### Installation ###
@@ -40,7 +41,7 @@ conda install -c bioconda wgdi diamond aster phytop newick_utils
 3. Genomic data of outgroup or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required.
 4. Configure files for WGDI.
 
-Here, we just use the example data [T. aestivum (AABBDD) and T. turgidum (AABB), and the outgroup Hordeum vulgare] prepared in this repo:
+Here, we just use the example data [*T. aestivum* (AABBDD) and *T. turgidum* (AABB), and the outgroup *Hordeum vulgare*] prepared in this repo:
 ```
 git clone https://github.com/zhangrengang/subgenome_phasing_example
 cd subgenome_phasing_example
@@ -104,8 +105,8 @@ wgdi -bk Triticum_turgidum-Triticum_aestivum.conf
 wgdi -bk Triticum_aestivum-Triticum_aestivum.conf
 ```
 From the resulted dot plots, 
-we can find that the D subgenome of Triticum_aestivum shows 
-higher Ks to Triticum_turgidum, while A or B subgenomes of Triticum_aestivum show lower Ks to Triticum_turgidum (Fig. 1 left). 
+we can find that the D subgenome of `Triticum_aestivum` shows 
+higher Ks to `Triticum_turgidum`, while A or B subgenomes of `Triticum_aestivum` show lower Ks to `Triticum_turgidum` (Fig. 1 left). 
 Thus, the D subgenome as a singleton can be phased out.
 
 ![Triticum_turgidum-Triticum_aestivum.blockks](wgdi/Triticum_turgidum-Triticum_aestivum.blockks.png) | ![Triticum_aestivum.blockks](wgdi/Triticum_aestivum-Triticum_aestivum.blockks.png)
@@ -412,7 +413,7 @@ nw_display Hordeum_vulgare.trees.nwk.astral
 1. Genomic data (genome sequences in fasta format) of the allopolyploid complex are required.
 2. Homoeologous relationships of chromosomes are required. These can be obtained from above synteny analyses or whole genome alignments..
 
-Here, we just use the example data [T. aestivum (AABBDD) and T. turgidum (AABB)] prepared in this repo:
+Here, we just use the example data [*T. aestivum* (AABBDD) and *T. turgidum* (AABB)] prepared in this repo:
 ```
 git clone https://github.com/zhangrengang/subgenome_phasing_example
 cd subgenome_phasing_example
@@ -466,7 +467,7 @@ inference should be careful and cautious to avoid type II errors.
 
 
 #### [Optional] Convert to WGDI format and build subgenome phylogeny ####
-Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny using the same method.
+Here for comparison purpose, we convert the output of SubPhaser to the format of WGDI, to build the subgenome phylogeny using the same method (`wgdi + astral-pro`).
 
 Link files for WGDI:
 ```
