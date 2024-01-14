@@ -112,7 +112,7 @@ Thus, the D subgenome as a singleton can be phased out.
 ![Triticum_turgidum-Triticum_aestivum.blockks](wgdi/Triticum_turgidum-Triticum_aestivum.blockks.png) | ![Triticum_aestivum.blockks](wgdi/Triticum_aestivum-Triticum_aestivum.blockks.png)
 ---|---
 
-**Fig. 1. Ks-colored dot plots between Triticum_turgidum and Triticum_aestivum (left) and within Triticum_aestivum (right).** The lower Ks indicates the higher similarity, and the lowest inter-genomic Ks (e.g. the red colored in the left panel) indicates orthology.
+**Fig. 1. Ks-colored dot plots between `Triticum_turgidum` and `Triticum_aestivum` (left) and within `Triticum_aestivum` (right).** The lower Ks indicates the higher similarity, and the lowest inter-genomic Ks (e.g. the red colored in the left panel) indicates orthology.
 
 We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (Fig. 1 right).
 
@@ -141,12 +141,14 @@ Then, we map the karyotype of polyploids to the reference:
 wgdi -km Triticum_turgidum-Hordeum_vulgare.conf
 wgdi -km Triticum_aestivum-Hordeum_vulgare.conf
 ```
-This step generates the karyotype mapping files of two wheats: `Triticum_turgidum.ancestor.txt` and `Triticum_aestivum.ancestor.txt`.
+This step generates the karyotype mapping files of the two wheats: `Triticum_turgidum.ancestor.txt` and `Triticum_aestivum.ancestor.txt`.
 
-At this stage, we need to manually eidt the two files to assign subgenomes. 
+At this stage, we need to manually edit the two files to assign subgenomes. 
 We have phased the D subgenome based on Ks-based evidence, 
-so we number the blocks of D subgenome as 3, but have to randomly number those of A or B subgenomes as 1 or 2 
-(but the assignments of A/B subgenomes of both wheat are consistant based on the inter-genomic similarity/orthology): 
+so we number the blocks of D subgenome as `3`, but have to randomly number those of A or B subgenomes as `1` or `2`. Meanwhile,
+the assignments of A/B subgenomes of the two wheats are consistant based on the inter-genomic similarity/orthology. 
+For eaxmple, if we assign `1A` as `2`, we need to assign `1B` as `1`, for `Triticum_aestivum`, based on their synteny; 
+accordingly, we need to assign `1A` as `2` and `1B` as `1`, for `Triticum_turgidum`, based on their orthology to `Triticum_aestivum`: 
 ```
 $ cat Triticum_aestivum.ancestor.txt
 1A      1       4359    RoyalBlue       2
@@ -239,7 +241,7 @@ delete_detail = true" > Hordeum_vulgare.$chr.conf
     nw_topology -I Hordeum_vulgare.$chr.trees.nwk.astral | nw_order - | nw_display - -w 30
 done
 ```
-The following is the topology of these chromosome phylogeny:
+The following is the topology of these chromosome phylogenies:
 ```
 chr1-3H:
  /-------------------------+ 1   /-------------------------+ 1   /-------------------------+ 1
@@ -281,8 +283,9 @@ chr7H:
               \------------+ 5
 ```
 The tip numbers in the trees are corresponding with the columns of `merged.alignment.csv`, so `1` = `Hordeum_vulgare`, 
-`2-3` = `Triticum_turgidum`, `4-6` = `Triticum_aestivum`. We can find that all the topologies are identical (i.e. `((A, D), B)`) in fact, thus
-we manually adjust the assignments according to the phylogenetic positions:
+`2-3` = `Triticum_turgidum 1-2`, `4-6` = `Triticum_aestivum 1-3`. We can find that all the topologies are identical (i.e. `((A, D), B)`) in fact, thus
+we manually adjust the assignments according to the phylogenetic positions, by assigning chromosomes that is sister to `Triticum_aestivum 3` as `1` 
+and assigning the sisters of `1+3` as `2`:
 ```
 $ cat Triticum_aestivum.ancestor.txt
 1A      1       4359    RoyalBlue       1
@@ -379,10 +382,10 @@ chr7H:
         \-----+
               \------------+ 5
 ```
-These processes (`wgdi -pc`, `-a`, `-at`) may be performed more than two iterations to generate such a consistant phylogeny.
+The above processes (`wgdi -pc`, `-a`, `-at`) may be iterated more than twice to generate such a consistant phylogeny.
 
 #### [Optional] Seek evidence from biased fractionation ####
-We analyze the gene retain (`wgdi -r`):
+We analyze the gene retain (`wgdi -r`) patterns:
 ```
 wgdi -r Triticum_aestivum-Hordeum_vulgare.conf
 wgdi -r Triticum_turgidum-Hordeum_vulgare.conf
@@ -419,14 +422,14 @@ git clone https://github.com/zhangrengang/subgenome_phasing_example
 cd subgenome_phasing_example
 cd subphaser
 
-# download genome seqences of Triticum_aestivum
+# download genome sequences of Triticum_aestivum
 wget https://urgi.versailles.inra.fr/download/iwgsc/IWGSC_RefSeq_Assemblies/v2.1/iwgsc_refseqv2.1_assembly.fa.zip -c && \
     unzip iwgsc_refseqv2.1_assembly.fa.zip && \
     mv iwgsc_refseqv2.1_assembly.fa Triticum_aestivum-genome.fasta && \
     gzip Triticum_aestivum-genome.fasta -f && \
     rm iwgsc_refseqv2.1_assembly.fa.zip
 
-# download genome seqences of Triticum_turgidum
+# download genome sequences of Triticum_turgidum
 wget -c ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/900/231/445/GCA_900231445.1_Svevo.v1/GCA_900231445.1_Svevo.v1_genomic.fna.gz -O Triticum_turgidum-genome.fasta.gz
 ```
 Now, all the required input data are present:
