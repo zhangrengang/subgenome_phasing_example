@@ -119,7 +119,8 @@ We hypothesize the A or B subgenome may be closer to the D subgenome. However, t
 Alternatively, Ks can be replaced by [*Orthology index*](https://github.com/zhangrengang/orthoindex) 
 which shows much more clear orthology relationshipes (Fig. 1c).
 
-![Triticum_turgidum-Triticum_aestivum.orthoindex](wgdi/Triticum_turgidum-Triticum_aestivum.io.png)
+[//]: ![Triticum_turgidum-Triticum_aestivum.orthoindex](wgdi/Triticum_turgidum-Triticum_aestivum.io.png)
+<img src="wgdi/Triticum_turgidum-Triticum_aestivum.io.png" alt="Triticum_turgidum-Triticum_aestivum.orthoindex" width="500" >
 **Fig. 1c. *Orthology index*-colored dot plots between `Triticum_turgidum` and `Triticum_aestivum`.** 
 The highest inter-genomic *Orthology index* (i.e. the red colored dots) indicates orthology.
 
