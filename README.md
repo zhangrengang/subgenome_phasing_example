@@ -116,6 +116,14 @@ Thus, the D subgenome as a singleton can be phased out.
 
 We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (Fig. 1 right).
 
+Alternatively, Ks can be replaced by [*Orthology index*](https://github.com/zhangrengang/orthoindex) 
+which shows much more clear orthology relationshipes (Fig. 1c).
+
+![Triticum_turgidum-Triticum_aestivum.orthoindex](wgdi/Triticum_turgidum-Triticum_aestivum.io.png)
+**Fig. 1c. *Orthology index*-colored dot plots between `Triticum_turgidum` and `Triticum_aestivum`.** 
+The highest inter-genomic *Orthology index* (i.e. the red colored dots) indicates orthology.
+
+
 #### Assign subgenome preliminarily ####
 Fisrt, we need to identify orthologous synteny between the outgroup reference and the polyploids, 
 and to visually validate with the Ks-colored dot plots:
