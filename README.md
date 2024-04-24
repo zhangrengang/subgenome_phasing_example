@@ -8,7 +8,7 @@
 
 ### Introduction ###
 This is an example to phase subgenomes of an allopolyploid complex using 
-[WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser)). 
+[WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser). 
 Here we use the data of 
 wheat complex (tetraploid–hexaploid reticulate allopolyploidization) as the example. 
 The complex include an allotetraploid (AABB, *Triticum turgidum*, 2n = 4x = 28) and 
