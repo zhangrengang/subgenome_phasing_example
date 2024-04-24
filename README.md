@@ -117,7 +117,8 @@ Thus, the D subgenome as a singleton can be phased out.
 We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (Fig. 1 right).
 
 Alternatively, Ks can be replaced by [*Orthology index*](https://github.com/zhangrengang/orthoindex) 
-which shows much more clear orthology relationshipes (Fig. 1c). It is recommended when Ks patterns are not clear.
+which shows much more clear orthology relationshipes (Fig. 1c). 
+It is highly recommended when Ks patterns are not clear.
 
 [//]: ![Triticum_turgidum-Triticum_aestivum.orthoindex](wgdi/Triticum_turgidum-Triticum_aestivum.io.png)
 <img src="wgdi/Triticum_turgidum-Triticum_aestivum.io.png" alt="Triticum_turgidum-Triticum_aestivum.orthoindex" width="400" >
@@ -415,7 +416,6 @@ astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.a
 phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
-[//]: ![subgenome phylogeny](wgdi/Hordeum_vulgare.trees.nwk.astral.png)
 <img src="wgdi/Hordeum_vulgare.trees.nwk.astral.png" alt="subgenome phylogeny" width="500" >
 
 **Fig. 6. Subgenome phylogeny from phased results of WGDI.** `1` = `Hordeum_vulgare`,
@@ -528,7 +528,6 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
 
-[//]: ![subgenome phylogeny](subphaser/Hordeum_vulgare.trees.nwk.astral.png)
 <img src="subphaser/Hordeum_vulgare.trees.nwk.astral.png" alt="subgenome phylogeny" width="500" >
 
 **Fig. 6. Subgenome phylogeny from phased results of SubPhaser.** `1` = `Hordeum_vulgare`,
