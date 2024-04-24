@@ -117,10 +117,11 @@ Thus, the D subgenome as a singleton can be phased out.
 We hypothesize the A or B subgenome may be closer to the D subgenome. However, there is no such a pattern that Ks(A-D) is higher or lower than Ks(B-D) to distinguish A and B subgenomes (Fig. 1 right).
 
 Alternatively, Ks can be replaced by [*Orthology index*](https://github.com/zhangrengang/orthoindex) 
-which shows much more clear orthology relationshipes (Fig. 1c).
+which shows much more clear orthology relationshipes (Fig. 1c). It is recommended when Ks patterns are not clear.
 
 [//]: ![Triticum_turgidum-Triticum_aestivum.orthoindex](wgdi/Triticum_turgidum-Triticum_aestivum.io.png)
-<img src="wgdi/Triticum_turgidum-Triticum_aestivum.io.png" alt="Triticum_turgidum-Triticum_aestivum.orthoindex" width="500" >
+<img src="wgdi/Triticum_turgidum-Triticum_aestivum.io.png" alt="Triticum_turgidum-Triticum_aestivum.orthoindex" width="400" >
+
 **Fig. 1c. *Orthology index*-colored dot plots between `Triticum_turgidum` and `Triticum_aestivum`.** 
 The highest inter-genomic *Orthology index* (i.e. the red colored dots) indicates orthology.
 
@@ -414,7 +415,9 @@ astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.a
 phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
-![subgenome phylogeny](wgdi/Hordeum_vulgare.trees.nwk.astral.png)
+[/]:![subgenome phylogeny](wgdi/Hordeum_vulgare.trees.nwk.astral.png)
+<img src="wgdi/Hordeum_vulgare.trees.nwk.astral.png" alt="subgenome phylogeny" width="400" >
+
 **Fig. 6. Subgenome phylogeny from phased results of WGDI.** `1` = `Hordeum_vulgare`,
 `2` = `Triticum_turgidum A`, `3` = `Triticum_turgidum B`, `4` = `Triticum_aestivum A`, 
 `5` = `Triticum_aestivum B`, `6` = `Triticum_aestivum D`.
@@ -525,7 +528,9 @@ phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
 
-![subgenome phylogeny](subphaser/Hordeum_vulgare.trees.nwk.astral.png)
+[]:![subgenome phylogeny](subphaser/Hordeum_vulgare.trees.nwk.astral.png)
+<img src="subphaser/Hordeum_vulgare.trees.nwk.astral.png" alt="subgenome phylogeny" width="400" >
+
 **Fig. 6. Subgenome phylogeny from phased results of SubPhaser.** `1` = `Hordeum_vulgare`,
 `2` = `Triticum_turgidum A`, `3` = `Triticum_turgidum B`, `4` = `Triticum_aestivum A`,
 `5` = `Triticum_aestivum B`, `6` = `Triticum_aestivum D`.
