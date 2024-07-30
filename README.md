@@ -38,7 +38,8 @@ conda install -c bioconda wgdi diamond aster phytop newick_utils
 
 1. Genomic data (protein sequences in fasta format and gene coordinates in custom gff format) of the allopolyploid complex are required.
 2. Genomic data of potential diploid progenitors as far as possible are recommended (here is omitted).
-3. Genomic data of outgroup or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required.
+3. Genomic data of outgroup, or [ancestral karyotype](https://github.com/SunPengChuan/wgdi-example/blob/main/Karyotype_Evolution.md) are required for phylogeny. 
+One arbitrarily assigned subgenome (e.g. seven non-homoeologous chromosomes of allohexaploid wheat) of the ingroups can also be used as the reference for subgenome assignments (the outgroup is still required for rooting the phylogeny).
 4. Configure files for WGDI.
 
 Here, we just use the example data [*T. aestivum* (AABBDD) and *T. turgidum* (AABB), and the outgroup *Hordeum vulgare*] prepared in this repo:
