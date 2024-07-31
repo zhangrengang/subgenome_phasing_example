@@ -142,6 +142,9 @@ If there are non-orthologous syntenic blocks in the dot plots (Fig. 2),
 we need to adjust the parameters (including `homo`, `multiple` and `pvalue`) 
 for `wgdi -c`, and re-run the above commands. Sometimes, we need to delete the 
 out-paralogous blocks from the `blockinfo` file manually.
+Alternatively, orthologous syntenic blocks can also be robustly identified via [*Orthology index*](https://github.com/zhangrengang/orthoindex)
+by synthezising synteny with pre-inferred orthology (see [example](https://github.com/zhangrengang/evolution_example)). It is highly recommended when 
+`wgdi -c` do not work well.
 
 ![Triticum_aestivum-Hordeum_vulgare.blockks](wgdi/Triticum_aestivum-Hordeum_vulgare.blockks.png) | ![Triticum_turgidum-Hordeum_vulgare.blockks](wgdi/Triticum_turgidum-Hordeum_vulgare.blockks.png)
 ---|---
