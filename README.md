@@ -254,7 +254,7 @@ trimming =  trimal
 minimum = 4
 delete_detail = true" > Hordeum_vulgare.$chr.conf
     wgdi -at Hordeum_vulgare.$chr.conf
-    astral-pro -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
+    astral-pro --root 1 -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
     phytop -pie -cp Hordeum_vulgare.$chr.trees.nwk.astral
     nw_topology -I Hordeum_vulgare.$chr.trees.nwk.astral | nw_order - | nw_display - -w 30
 done
@@ -419,7 +419,7 @@ However, biased fractionation patterns to distinguish subgenomes are not observe
 Then we can build a final subgenome phylogeny:
 ```
 cat Hordeum_vulgare.*.trees.nwk > Hordeum_vulgare.trees.nwk
-astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.astral
+astral-pro --root 1 -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.astral
 phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
@@ -530,7 +530,7 @@ minimum = 4
 delete_detail = true" > Hordeum_vulgare.conf
 
 wgdi -at Hordeum_vulgare.conf
-astral-pro -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.astral
+astral-pro --root 1 -i Hordeum_vulgare.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.trees.nwk.astral
 phytop -pie -cp Hordeum_vulgare.trees.nwk.astral
 nw_display Hordeum_vulgare.trees.nwk.astral
 ```
@@ -546,10 +546,10 @@ If you use this pipeline, please cite:
 > Zhang RG, Shang HY, Jia KH, Ma YP. Subgenome phasing for complex allopolyploidy: case-based benchmarking and recommendations [J]. *Brief. Bioinform.*, 2024, 25 (1): bbad513 [DOI:10.1093/bib/bbad513](http://doi.org/10.1093/bib/bbad513)
 
 If you use the following tools, please cite:
-* [WGDI](https://github.com/SunPengChuan/wgdi): Sun P, Jiao B, Yang Y et. al. WGDI: A user-friendly toolkit for evolutionary analyses of whole-genome duplications and ancestral karyotypes [J]. Mol. Plant., 2022, 15 (12): 1841–1851 [http://doi.org/10.1016/j.molp.2022.10.018]
-* [SubPhaser](https://github.com/zhangrengang/SubPhaser): Jia K, Wang Z, Wang L et. al. SubPhaser: a robust allopolyploid subgenome phasing method based on subgenome-specific k-mers [J]. New Phytol., 2022, 235 (2): 801–809 [http://doi.org/10.1111/nph.18173]
-* [ASTRAL](https://github.com/chaoszhang/ASTER): Zhang C, Mirarab S. ASTRAL-Pro 2: ultrafast species tree reconstruction from multi-copy gene family trees [J]. Bioinformatics, 2022, 38 (21): 4949–4950 [http://doi.org/10.1093/bioinformatics/btac620]
-* [SOI](https://github.com/zhangrengang/SOI): Zhang R G, Shang H, Milne R I et. al. SOI: Robust identification of orthologous synteny with the Orthology Index and broad applications in evolutionary genomics [J]. bioRxiv, 2024 [http://doi.org/10.1101/2024.08.22.609065]
-* [phytop](https://github.com/zhangrengang/phytop): Shang H, Jia K, Li N et. al. Phytop: A tool for visualizing and recognizing signals of incomplete lineage sorting and hybridization using species trees output from ASTRAL [J]. Hortic. Res., 2024: uhae330 [http://doi.org/10.1093/hr/uhae330]
-* DIAMOND: Buchfink B, Xie C, Huson D H. Fast and sensitive protein alignment using DIAMOND [J]. Nat. Methods, 2015, 12 (1): 59–60 [http://doi.org/10.1038/nmeth.3176]
-* Newick utilities: Junier T, Zdobnov E M. The Newick utilities: high-throughput phylogenetic tree processing in the Unix shell [J]. Bioinformatics, 2010, 26 (13): 1669–1670 [http://doi.org/10.1093/bioinformatics/btq243]
+* [WGDI](https://github.com/SunPengChuan/wgdi): Sun P, Jiao B, Yang Y et. al. WGDI: A user-friendly toolkit for evolutionary analyses of whole-genome duplications and ancestral karyotypes [J]. Mol. Plant., 2022, 15 (12): 1841–1851 [10.1016/j.molp.2022.10.018](http://doi.org/10.1016/j.molp.2022.10.018)
+* [SubPhaser](https://github.com/zhangrengang/SubPhaser): Jia K, Wang Z, Wang L et. al. SubPhaser: a robust allopolyploid subgenome phasing method based on subgenome-specific k-mers [J]. New Phytol., 2022, 235 (2): 801–809 [10.1111/nph.18173](http://doi.org/10.1111/nph.18173)
+* [ASTRAL](https://github.com/chaoszhang/ASTER): Zhang C, Mirarab S. ASTRAL-Pro 2: ultrafast species tree reconstruction from multi-copy gene family trees [J]. Bioinformatics, 2022, 38 (21): 4949–4950 [10.1093/bioinformatics/btac620](http://doi.org/10.1093/bioinformatics/btac620)
+* [SOI](https://github.com/zhangrengang/SOI): Zhang R G, Shang H, Milne R I et. al. SOI: Robust identification of orthologous synteny with the Orthology Index and broad applications in evolutionary genomics [J]. bioRxiv, 2024 [10.1101/2024.08.22.609065](http://doi.org/10.1101/2024.08.22.609065)
+* [phytop](https://github.com/zhangrengang/phytop): Shang H, Jia K, Li N et. al. Phytop: A tool for visualizing and recognizing signals of incomplete lineage sorting and hybridization using species trees output from ASTRAL [J]. Hortic. Res., 2024: uhae330 [10.1093/hr/uhae330](http://doi.org/10.1093/hr/uhae330)
+* DIAMOND: Buchfink B, Xie C, Huson D H. Fast and sensitive protein alignment using DIAMOND [J]. Nat. Methods, 2015, 12 (1): 59–60 [10.1038/nmeth.3176](http://doi.org/10.1038/nmeth.3176)
+* Newick utilities: Junier T, Zdobnov E M. The Newick utilities: high-throughput phylogenetic tree processing in the Unix shell [J]. Bioinformatics, 2010, 26 (13): 1669–1670 [10.1093/bioinformatics/btq243](http://doi.org/10.1093/bioinformatics/btq243)
