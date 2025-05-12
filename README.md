@@ -119,8 +119,19 @@ We hypothesize the A or B subgenome may be closer to the D subgenome. However, t
 
 Alternatively, Ks can be replaced by [*Orthology index*](https://github.com/zhangrengang/orthoindex) 
 which shows much more clear orthology relationshipes (Fig. 1c). 
-It is highly recommended when Ks patterns are not clear.
+It is highly recommended when Ks patterns are not clear:
+```
+soi dotplot -s Triticum_turgidum-Triticum_aestivum.collinearity -g *.gff@(.gz|) -c Triticum_turgidum-Triticum_aestivum.ctl \
+     --ks-hist --max-ks 1 -o Triticum_turgidum-Triticum_aestivum.io \
+     --plot-ploidy --gene-axis --xlabel '$Triticum~turgidum$' --ylabel '$Triticum~aestivum$' \
+     --number-plots --ofdir ../OrthoFinder/OrthoFinder/Results_* --of-color
 
+soi dotplot -s Triticum_aestivum-Triticum_aestivum.collinearity -g *.gff@(.gz|) -c Triticum_aestivum-Triticum_aestivum.ctl \
+     --ks-hist --max-ks 1 -o Triticum_aestivum-Triticum_aestivum.io \
+     --plot-ploidy --gene-axis --xlabel '$Triticum~aestivum$' --ylabel '$Triticum~aestivum$' \
+     --number-plots --ofdir ../OrthoFinder/OrthoFinder/Results_* --of-color
+
+```
 [//]: ![Triticum_turgidum-Triticum_aestivum.orthoindex](wgdi/Triticum_turgidum-Triticum_aestivum.io.png)
 <img src="wgdi/Triticum_turgidum-Triticum_aestivum.io.png" alt="Triticum_turgidum-Triticum_aestivum.orthoindex" width="400" >
 
@@ -143,16 +154,27 @@ we need to adjust the parameters (including `homo`, `multiple` and `pvalue`)
 for `wgdi -c`, and re-run the above commands. Sometimes, we need to delete the 
 out-paralogous blocks from the `blockinfo` file manually.
 
-Alternatively, orthologous syntenic blocks can also be robustly identified via 
-[*Orthology index*](https://github.com/zhangrengang/orthoindex)
-by synthezising synteny with pre-inferred orthology 
-(see [an example](https://github.com/zhangrengang/evolution_example)). 
-It is highly recommended when `wgdi -c` do not work well.
-
 ![Triticum_aestivum-Hordeum_vulgare.blockks](wgdi/Triticum_aestivum-Hordeum_vulgare.blockks.png) | ![Triticum_turgidum-Hordeum_vulgare.blockks](wgdi/Triticum_turgidum-Hordeum_vulgare.blockks.png)
 ---|---
 
 **Fig. 2. Orthologous synteny.**
+
+Alternatively, orthologous syntenic blocks can also be robustly identified via 
+[*Orthology index*](https://github.com/zhangrengang/orthoindex)
+by synthezising synteny with pre-inferred orthology 
+(see [an example](https://github.com/zhangrengang/evolution_example)). 
+It is highly recommended when `wgdi -c` do not work well:
+```
+mv Triticum_turgidum-Hordeum_vulgare.collinearity Triticum_turgidum-Hordeum_vulgare.collinearity.raw
+soi filter -s Triticum_turgidum-Hordeum_vulgare.collinearity.raw -o ../OrthoFinder/OrthoFinder/Results_* -c 0.5 > Triticum_turgidum-Hordeum_vulgare.collinearity
+wgdi -bi Triticum_turgidum-Hordeum_vulgare.conf
+ln -f Triticum_turgidum-Hordeum_vulgare.blockinfo.csv Triticum_turgidum-Hordeum_vulgare.blockinfo.new.csv
+
+mv Triticum_aestivum-Hordeum_vulgare.collinearity Triticum_aestivum-Hordeum_vulgare.collinearity.raw
+soi filter -s Triticum_aestivum-Hordeum_vulgare.collinearity.raw -o ../OrthoFinder/OrthoFinder/Results_* -c 0.5 > Triticum_aestivum-Hordeum_vulgare.collinearity
+wgdi -bi Triticum_aestivum-Hordeum_vulgare.conf
+ln -f Triticum_aestivum-Hordeum_vulgare.blockinfo.csv Triticum_aestivum-Hordeum_vulgare.blockinfo.new.csv
+```
 
 Then, we map the karyotype of polyploids to the reference:
 ```
@@ -301,7 +323,17 @@ chr7H:
               \------------+ 5
 ```
 The tip numbers in the trees are corresponding with the columns of `merged.alignment.csv`, so `1` = `Hordeum_vulgare`, 
-`2-3` = `Triticum_turgidum 1-2`, `4-6` = `Triticum_aestivum 1-3`. We can find that all the topologies are identical (i.e. `((A, D), B)`) in fact, thus
+`2-3` = `Triticum_turgidum 1-2`, `4-6` = `Triticum_aestivum 1-3`. 
+The tip names can also be changed by:
+```
+for chr in $(cut -f1 Hordeum_vulgare.lens)
+do
+	nw_rename Hordeum_vulgare.$chr.trees.nwk.astral sg.idmap > Hordeum_vulgare.$chr.trees.nwk.astral.rename
+done
+```
+
+
+We can find that all the topologies are identical (i.e. `((A, D), B)`) in fact, thus
 we manually adjust the assignments according to the phylogenetic positions, by assigning chromosomes that is sister to `Triticum_aestivum 3` as `1` 
 and assigning the sisters of `1+3` as `2`:
 ```
