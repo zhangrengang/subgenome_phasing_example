@@ -34,6 +34,13 @@ conda install -c bioconda wgdi diamond aster phytop newick_utils
 ```
 
 ### Subgenome phasing with WGDI ###
+The rationales to assign subgenomes based on phylogenetic postions can be found in [the paper](https://doi.org/10.1093/bib/bbad513):
+- The wheat complex (tetraploid–hexaploid reticulate allopolyploidization)
+- The oat complex (tetraploid–hexaploid reticulate allopolyploidization)
+- The poppy complex (tetraploid–octoploid reticulate allopolyploidization)
+- Allotetraploids in the U’s triangle (tetraploid–tetraploid–tetraploid parallel allopolyploidization)
+- The allooctoploid strawberry (single allooctoploid)
+
 #### Prepare input data ####
 
 1. Genomic data (protein sequences in fasta format and gene coordinates in custom gff format) of the allopolyploid complex are required.
