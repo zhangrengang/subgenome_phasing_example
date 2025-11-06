@@ -8,7 +8,7 @@
 
 ### Introduction ###
 This is an example to phase subgenomes of an allopolyploid complex using 
-[WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser). 
+[WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser) (see Table 1 for comparison). 
 Here we use the data of 
 wheat complex (tetraploid–hexaploid reticulate allopolyploidization) as the example. 
 The complex include an allotetraploid (AABB, *Triticum turgidum*, 2n = 4x = 28) and 
@@ -19,6 +19,17 @@ gave rise to the allopolyploid *T. turgidum* genome (AABB).
 Subsequently, less than 0.4 mya, emmer wheat (AABB) hybridized with another wild wheat species
 carrying the D genome (*A. tauschii*), resulting in the allohexaploid *T. aestivum* genome (AABBDD).
 We assume that the diploid progenitors of allopolyploid wheats were either extinct or not sampled during the subgenome phasing process.
+
+**Table 1. Comparison of subgenome phasing pipelines based on WGDI and SubPhaser.**
+
+| Feature | WGDI | SubPhaser |
+| :--- | :--- | :--- |
+| Requirement of Progenitors | Requires data from related diploid and/or polyploid progenitors. | Does not require such data. |
+| Subgenome Assignment | Manual assignment of subgenomes. | Automatic assignment. |
+| Core Principle | Based on evidence of synteny, ortholgy and phylogeny with progenitors. | Based on intrinsic repetitive elements burst in progenitors. |
+| Identification of Exchanges | Cannot recognize inter-subgenomic exchanges, and maybe erroneous for the exchanged regions. | Can identify inter-subgenomic exchanges, but can be limited if evidence is not sufficient. |
+| Polyploid Type Limit | No limits, provided that synteny is not too fragmented. | Applicable only to neo-allopolyploids. |
+| Phasing Output | Provides relative phasing to absolute phasing, depending on the sufficiency of supporting evidence. | Provides absolute phasing. |
 
 ### Installation ###
 Firstly, we need to install the required software ([WGDI](https://github.com/SunPengChuan/wgdi) and [SubPhaser](https://github.com/zhangrengang/SubPhaser)) for this example.
@@ -34,7 +45,7 @@ conda install -c bioconda wgdi diamond aster phytop newick_utils
 ```
 
 ### Subgenome phasing with WGDI ###
-The rationales to assign subgenomes based on phylogenetic postions can be found in [the paper](https://doi.org/10.1093/bib/bbad513):
+The rationales to assign subgenomes based on phylogenetic positions can be found in [the paper](https://doi.org/10.1093/bib/bbad513):
 - The wheat complex (tetraploid–hexaploid reticulate allopolyploidization)
 - The oat complex (tetraploid–hexaploid reticulate allopolyploidization)
 - The poppy complex (tetraploid–octoploid reticulate allopolyploidization)
@@ -286,6 +297,7 @@ delete_detail = true" > Hordeum_vulgare.$chr.conf
     astral-pro --root 1 -i Hordeum_vulgare.$chr.trees.nwk -u 2 -t 8 -o Hordeum_vulgare.$chr.trees.nwk.astral
     phytop -pie -cp Hordeum_vulgare.$chr.trees.nwk.astral
     nw_topology -I Hordeum_vulgare.$chr.trees.nwk.astral | nw_order - | nw_display - -w 30
+	nw_rename Hordeum_vulgare.$chr.trees.nwk.astral sg.idmap > Hordeum_vulgare.$chr.trees.nwk.astral.rename
 done
 ```
 The following is the topology of these chromosome phylogenies:
